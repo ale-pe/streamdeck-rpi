@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Streamdeck</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+
+  <div class="container-fluid " id="menu1">
+    <div class="row">
+        <div class="col-12 p-0">
+          <div id ="animate"></div>
+            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-sm-6"><button type="button" id="bpstream" class="btn  btn-block btn-success" onclick="cliclive()">Lancer un live</button></div>
+                <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="clicrec()">Lancer un Rec</button></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-6"><button type="button"  class="btn  btn-block btn-success" onclick="gotomenustream1()">Mon stream</button></div>
+                <div class="col-sm-6"><button type="button"  class="btn  btn-block btn-success" onclick="">Mon pc</button></div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid " id="menustream1">
+  <div class="row">
+      <div class="col-12 p-0">
+        <div id ="animate"></div>
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <div class="row">
+              <div class="col-sm-6"><button type="button" id="bpstream" class="btn  btn-block btn-success" onclick="document.getElementById('tableauscène').innerHTML = '';document.getElementById('menustream1').style.display = 'none';document.getElementById('menuchat').style.display = 'block';">Chat</button></div>
+              <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="socket.emit('getscenes');document.getElementById('tableauscène').innerHTML = '';document.getElementById('menustream1').style.display = 'none';document.getElementById('menustreamscenes').style.display = 'block';">Scènes</button></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6"><button type="button" id="bpstream" class="btn  btn-block btn-success" onclick="socket.emit('changescenes')"></button></div>
+              <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="document.getElementById('menustream1').style.display = 'none';document.getElementById('menu1').style.display = 'block';">Retour</button></div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid " id="menustreamscenes">
+  <div class="row">
+      <div class="col-12 p-0">
+        <div id ="animate"></div>
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <table class="table table-striped" style="background-color: whitesmoke">
+              <thead>
+                <tr>
+                  <th>Scène</th>
+                  <th>Lancer</th>
+                </tr>
+              </thead>
+            </table>
+            <table class="table table-striped" id="tableauscène" style="background-color: whitesmoke">
+            </table>
+            <button type="button" id="bprec" class="btn  btn-block btn-success" onclick="document.getElementById('menustreamscenes').style.display = 'none';document.getElementById('menu1').style.display = 'block';">Retour</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid " id="menuchat">
+  <div class="row">
+      <div class="col-12 p-0">
+        <div id ="animate"></div>
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+              <button type="button" id="bprec" class="btn  btn-block btn-success" onclick="document.getElementById('menuchat').style.display = 'none';document.getElementById('menu1').style.display = 'block';">Retour</button>
+              <iframe
+              id="chat_embed"
+              src="https://www.twitch.tv/embed/locklear/chat?parent192.168.1.15:5001/deck"
+              height="500"
+              width="350">
+            </iframe>
+          </div>
+      </div>
+  </div>
+</div>
+
+</body>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+  document.getElementById("menustream1").style.display = "none";
+  document.getElementById("menuchat").style.display = "none";
+  document.getElementById("menustreamscenes").style.display = "none";
+
+
+
+  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  // verify our websocket connection is established
+  socket.on('connect', function() {
+      console.log('Websocket connected!');
+      socket.emit("datalive")
+  });
+  // message handler for the 'join_room' channel
+  socket.on('data', function(msg) {
+      console.log(msg);
+      if (msg.livestate == true){
+        document.getElementById("bpstream").innerHTML = "Arrêter un live";
+        document.getElementById("bpstream").style.background='red';
+      } else {
+        document.getElementById("bpstream").innerHTML = "Lancer un live";
+        document.getElementById("bpstream").style.background='green';
+      }
+      if (msg.recordstate == true){
+        document.getElementById("bprec").innerHTML = "Arrêter un Rec";
+        document.getElementById("bprec").style.background='red';
+      } else {
+        document.getElementById("bprec").innerHTML = "Lancer un Rec";
+        document.getElementById("bprec").style.background='green';
+      }
+      
+  });
+  // createGame onclick - emit a message on the 'create' channel to 
+  // create a new game with default parameters
+  function join() {
+    console.log('Creating game...');
+    socket.emit('join', {room: '123', username: 'Simple'});
+  }
+
+  socket.on('texte', function(msg) {
+      console.log(msg);
+  });
+  var datalive = "changescenes"
+var text =""
+  socket.on('getscenes', function(msg) {
+    var table = document.getElementById("tableauscène");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = msg.name;
+    text = msg.name;
+    cell2.innerHTML = '<button type="button" class="btn  btn-block btn-success" onclick="socket.emit(String(datalive), {scene: \''+ text + '\'})">GO</button>';
+
+  });  
+  function clicrec() {
+    console.log("ok")
+    socket.emit('rec');
+  }
+
+  function cliclive() {
+    console.log("ok")
+    socket.emit('live');
+  }
+
+  function check(){
+    socket.emit("datalive")
+  }
+  setInterval(check, 4000 ); // <-- when you ge a response, call it
+
+  function gotomenustream1(){
+    document.getElementById("menustream1").style.display = "block";
+    document.getElementById("menu1").style.display = "none";
+
+  }
+
+  function changescenes(parameter1){
+    socket.emit("datalive",{"name" : parameter1 })
+  }
+</script>
+</html>
