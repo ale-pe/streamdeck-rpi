@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>TEST1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+body {
+    background-color: #0B6096;
+    background-image: url();
+    background-repeat: no-repeat;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<!-- Save for Web Slices (TEST1.psd) -->
+<table width="801" height="481" border="0" align="center" cellpadding="0" cellspacing="0" id="Tableau_01">
+	<tr>
+		<td colspan="4" rowspan="2">
+			<img src="static/images/TEST1_01.gif" width="313" height="91" alt=""></td>
+		<td colspan="3"><a href="main"><img src="static/images/TEST1_02.gif" width="185" height="41" alt=""></a></td>
+		<td colspan="4" rowspan="2">
+			<img src="static/images/TEST1_03.gif" width="302" height="91" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="41" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<img src="static/images/TEST1_04.gif" width="185" height="50" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="50" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="10">
+			<img src="static/images/TEST1_05.gif" width="81" height="389" alt=""></td>
+		<td colspan="4"><a href="scenes"><img src="static/images/TEST1_06.gif" width="235" height="45" alt=""></a></td>
+	  <td rowspan="10" align="center" valign="middle">
+		<p><img src="static/images/TEST1_07.gif" width="158" height="389" alt=""></p></td>
+		<td colspan="4"><img id="imglive" onclick="cliclive()" src="static/images/TEST1_08.gif" width="235" height="45" alt=""></a></td>
+		<td rowspan="10">
+			<img src="static/images/TEST1_09.gif" width="91" height="389" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="45" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="static/images/TEST1_10.gif" width="235" height="12" alt=""></td>
+		<td colspan="4">
+			<img src="static/images/TEST1_11.gif" width="235" height="12" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="12" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4"><a href="son"><img src="static/images/TEST1_12.gif" width="235" height="45" alt=""></a></td>
+		<td colspan="4"><img id="imgrec" onclick="clicrec()" src="static/images/TEST1_13.gif" width="235" height="45" alt=""></a></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="45" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="static/images/TEST1_14.gif" width="235" height="15" alt=""></td>
+		<td colspan="4">
+			<img src="static/images/TEST1_15.gif" width="235" height="15" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="15" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="static/images/TEST1_16.gif" width="235" height="45" alt=""></td>
+		<td colspan="4">
+			<img src="static/images/TEST1_17.gif" width="235" height="45" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="45" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="static/images/TEST1_18.gif" width="235" height="16" alt=""></td>
+		<td colspan="4" rowspan="2">
+			<img src="static/images/TEST1_19.gif" width="235" height="20" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="16" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="3"><a href="obs"><img src="static/images/TEST1_20.jpg" width="78" height="76" alt=""></a></td>
+		<td rowspan="4">
+			<img src="static/images/TEST1_21.gif" width="79" height="211" alt=""></td>
+		<td colspan="2" rowspan="2"><img src="static/images/TEST1_22.gif" onclick="twitchopen()" width="78" height="75" alt=""></a></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="4" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="3">
+			<img src="static/images/TEST1_23.gif" width="59" height="207" alt=""></td>
+		<td rowspan="2"><img src="static/images/TEST1_24.gif" onclick="spotifyopen()" width="116" height="72" alt=""></a></td>
+		<td rowspan="3">
+			<img src="static/images/TEST1_25.gif" width="60" height="207" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="71" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="static/images/TEST1_26.gif" width="78" height="136" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="static/images/TEST1_27.gif" width="78" height="135" alt=""></td>
+		<td>
+			<img src="static/images/TEST1_28.gif" width="116" height="135" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="1" height="135" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="static/images/spacer.gif" width="81" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="78" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="79" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="75" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="3" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="158" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="24" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="116" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="static/images/spacer.gif" width="91" height="1" alt=""></td>
+		<td></td>
+	</tr>
+</table>
+
+<script>
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+// verify our websocket connection is established
+socket.on('connect', function() {
+	console.log('Websocket connected!');
+	socket.emit("datalive")
+});
+
+socket.on('data', function(msg) {
+	console.log(msg);
+	if (msg.livestate == true){
+	  document.getElementById("imglive").setAttribute("src", "static/images/TEST2_08.jpg");
+	} else {
+	  document.getElementById("imglive").setAttribute("src", "static/images/TEST1_08.gif");
+	}
+	if (msg.recordstate == true){
+	  document.getElementById("imgrec").setAttribute("src", "static/images/TEST2_13.gif");
+	} else {
+	  document.getElementById("imgrec").setAttribute("src", "static/images/TEST1_13.gif");
+	}
+	
+});
+
+function clicrec() {
+  console.log("ok")
+  socket.emit('rec');
+}
+
+function cliclive() {
+  console.log("ok")
+  socket.emit('live');
+}
+
+function twitchopen() {
+  console.log("ok")
+  socket.emit('twitchopen');
+}
+function spotifyopen() {
+  console.log("ok")
+  socket.emit('spotifyopen');
+}
+function check(){
+  socket.emit("datalive")
+}
+setInterval(check, 4000 ); // <-- when you ge a response, call it
+
+</script>
+</body>
+</html>
+
+

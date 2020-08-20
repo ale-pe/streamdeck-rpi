@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Streamdeck</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+</head>
+<body onload="socket.emit('getscenes')">
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+  <div class="container-fluid " id="menustreamscenes">
+    <div class="row">
+        <div class="col-12 p-0">
+          <div id ="animate"></div>
+            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+              <table class="table table-striped" style="background-color: whitesmoke">
+                <thead>
+                  <tr>
+                    <th>Scène</th>
+                    <th>Lancer</th>
+                  </tr>
+                </thead>
+              </table>
+              <table class="table table-striped" id="tableauscène" style="background-color: whitesmoke">
+              </table>
+              <button type="button" id="bprec" class="btn  btn-block btn-success" onclick="retour();">Retour</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+  
+  
+  
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    // verify our websocket connection is established
+    socket.on('connect', function() {
+        console.log('Websocket connected!');
+        socket.emit("datalive")
+    });
+    var datalive = "changescenes"
+var text =""
+    socket.on('getscenes', function(msg) {
+      var table = document.getElementById("tableauscène");
+      var row = table.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = msg.name;
+      text = msg.name;
+      cell2.innerHTML = '<button type="button" class="btn  btn-block btn-success" onclick="socket.emit(String(datalive), {scene: \''+ text + '\'})">GO</button>';
+  
+    });  
+  
+    function changescenes(parameter1){
+      socket.emit("datalive",{"name" : parameter1 })
+    }
+  
+    function retour(){
+        window.location.href='http://' + document.domain + ':' + location.port +'/deck'
+
+    }
+  </script>
+  </html>

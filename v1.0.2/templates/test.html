@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Streamdeck</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/alasql/0.3/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
+<style>
+    .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%)}
+.btn-grad:hover { background-position: right center; }
+</style>
+<nav class=" bg-dark fixed-top">
+  <div class="row">
+    <div class="col">Bonjour</div>
+    <div class="col">.col</div>
+    <div class="col">.col</div>
+  </div>
+</nav>
+
+
+
+</head>
+<body>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+
+  <div class="container-fluid " id="menu1">
+    <div class="row">
+        <div class="col-12 p-0">
+          <div id ="animate"></div>
+            <div class="jumbotron min-vh-100 text-center m-0  d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-sm-6"><button type="button" id="bpstream" class="btn btn-grad btn-block" onclick="cliclive()">Lancer un live</button></div>
+                <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="clicrec()">Lancer un Rec</button></div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-6"><button type="button"  class="btn  btn-block btn-success" onclick="gotomenustream1()">Mon stream</button></div>
+                <div class="col-sm-6"><button type="button"  class="btn  btn-block btn-success" onclick="">Mon pc</button></div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid " id="menustream1">
+  <div class="row">
+      <div class="col-12 p-0">
+        <div id ="animate"></div>
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <div class="row">
+              <div class="col-sm-6"><button type="button" id="bpstream" class="btn  btn-block btn-success" onclick="document.getElementById('tableauscène').innerHTML = '';document.getElementById('menustream1').style.display = 'none';document.getElementById('menuchat').style.display = 'block';">Chat</button></div>
+              <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="socket.emit('getscenes');document.getElementById('tableauscène').innerHTML = '';document.getElementById('menustream1').style.display = 'none';document.getElementById('menustreamscenes').style.display = 'block';">Scènes</button></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6"><button type="button" id="bpstream" class="btn  btn-block btn-success" onclick="socket.emit('changescenes')"></button></div>
+              <div class="col-sm-6"><button type="button" id="bprec" class="btn  btn-block btn-success" onclick="document.getElementById('menustream1').style.display = 'none';document.getElementById('menu1').style.display = 'block';">Retour</button></div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
